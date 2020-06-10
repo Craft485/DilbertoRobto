@@ -21,8 +21,10 @@ module.exports = {
         axios.get(url)
         .then( async response => {
             let imgData = await this.parseHTMLData(response.data)
+            // From all the images scraped, get a random one
             let e = imgData[Math.floor(Math.random() * imgData.length)]
             console.log(e.image)
+            // Create an message embed with the comic
             let embed = new MessageEmbed()
                 .setAuthor("Scott Adams")
                 .setColor("#cc0921")
@@ -36,6 +38,6 @@ module.exports = {
         })
     },
     info: function (msg = new Message) {
-
+        // Oh yeah, this is a thing, meh
     }
 }
