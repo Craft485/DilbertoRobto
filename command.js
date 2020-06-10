@@ -38,6 +38,6 @@ module.exports = {
         })
     },
     info: function (msg = new Message) {
-        // Oh yeah, this is a thing, meh
+        msg.channel.send(`Use ${config.prefix}dilbert to view a random Dilbert comic.`)
     }
 }
