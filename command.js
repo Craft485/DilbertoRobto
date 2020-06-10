@@ -5,9 +5,9 @@ const parser = require('cheerio')
 const config = require('./config')
 
 module.exports = {
-    parseHTMLData: (html, httpsUrl) => {
+    parseHTMLData: (html) => {
         data = []
-        const $ = parser.load(html)
+        const $ = parser.load(html) 
         // Via the cherrio API, get every comic that loads on the page
         $('img.img-comic').each((i, elem) => {
             data.push({
@@ -20,7 +20,7 @@ module.exports = {
     dilbert: function (msg = new Message, url = new String) {
         axios.get(url)
         .then( async response => {
-            let imgData = await this.parseHTMLData(response.data, url)
+            let imgData = await this.parseHTMLData(response.data)
             let e = imgData[Math.floor(Math.random() * imgData.length)]
             console.log(e.image)
             let embed = new MessageEmbed()
