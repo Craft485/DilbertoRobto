@@ -26,7 +26,7 @@ module.exports = {
      * @param {String} url 
      */
     dilbert: function (msg, url) {
-        axios.get(url)
+        axios.get(url, { headers: { 'User-Agent': config.userAgent } })
         .then( async response => {
             let imgData = await this.parseHTMLData(response.data)
             // From all the images scraped, get a random one
