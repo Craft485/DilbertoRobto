@@ -5,9 +5,12 @@ const parser = require('cheerio')
 const config = require('./config')
 
 module.exports = {
+    /**
+     * @param {String} html
+     */
     parseHTMLData: (html) => {
         data = []
-        const $ = parser.load(html) 
+        const $ = parser.load(html)
         // Via the cherrio API, get every comic that loads on the page
         $('img.img-comic').each((i, elem) => {
             data.push({
@@ -17,13 +20,18 @@ module.exports = {
         })
         return data
     },
-    dilbert: function (msg = new Message, url = new String) {
+    /**
+     * 
+     * @param {Message} msg 
+     * @param {String} url 
+     */
+    dilbert: function (msg, url) {
         axios.get(url)
         .then( async response => {
             let imgData = await this.parseHTMLData(response.data)
             // From all the images scraped, get a random one
             let e = imgData[Math.floor(Math.random() * imgData.length)]
-            console.log(e.image)
+            console.log(`${e.image}`.blue)
             // Create an message embed with the comic
             let embed = new MessageEmbed()
                 .setAuthor("Scott Adams")
@@ -37,7 +45,11 @@ module.exports = {
             console.error(`${err}`.red)
         })
     },
-    info: function (msg = new Message) {
+    /**
+     * 
+     * @param {Message} msg 
+     */
+    info: function (msg) {
         msg.channel.send(`Use ${config.prefix}dilbert to view a random Dilbert comic.`)
     }
 }

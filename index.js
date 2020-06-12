@@ -7,13 +7,19 @@ const commands = require('./command')
 const config = require('./config')
 const client = new Client({presence:{status:"online"}})
 const baseurl = "https://dilbert.com/"
-const searchTerms = ["base", "online", "Dilbert"]
+const searchTerms = [
+    "base", "online", "Dilbert", "Catbert", "Wally",
+    "Alice", "Asok", "Carol", "Ratbert", "Ted", "Tina",
+    "Phil", "Topper", "Boss", "Garbageman", "Bob%20Dinosaur"
+]
 
 client.on('ready', () => {
     console.log(`${client.user.username}`.green)
 })
-
-client.on('message', (msg = new Message) => {
+/**
+ * @param {Message} msg
+ */
+client.on('message', (msg) => {
     if (msg.author.bot) {
         return
     } else if (msg.content.startsWith(config.prefix)) {
