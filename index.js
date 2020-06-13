@@ -14,6 +14,7 @@ const searchTerms = [
 ]
 
 client.on('ready', () => {
+    client.user.setAvatar('./dogbert.png')
     console.log(`${client.user.username}`.green)
 })
 /**
